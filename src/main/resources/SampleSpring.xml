@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:p="http://www.springframework.org/schema/p"	
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa" 
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	
+http://www.springframework.org/schema/beans/spring-beans.xsd 
+http://www.springframework.org/schema/jee 
+http://www.springframework.org/schema/jee/spring-jee.xsd 
+http://www.springframework.org/schema/tx 
+http://www.springframework.org/schema/tx/spring-tx.xsd
+http://www.springframework.org/schema/data/jpa 
+http://www.springframework.org/schema/data/jpa/spring-jpa.xsd 
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-2.5.xsd
+http://www.springframework.org/schema/util 
+http://www.springframework.org/schema/util/spring-util.xsd
+http://www.springframework.org/schema/aop 
+http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+<bean id="os1" class="com.guffy.spring.OrderServiceImpl" init-method="initialize" destroy-method="cleanUp" parent="absService"> </bean>
+
+
+<bean id="ordGenerator" class="com.guffy.spring.ProductIdGenerator"> </bean>
+
+
+<bean id="absService" class="com.guffy.spring.AbstractService" abstract= "true" > 
+
+<property name="defaultVersion" value="1.1"> </property>
+	<property name="manf" value="Guffy"> </property>
+	<property name="idGenerator" ref="ordGenerator"> </property>
+	
+	
+</bean>
+
+
+
+<bean id="os2" class="com.guffy.spring.OrderServiceImpl" parent="absService" >
+
+
+ </bean>
+
+
+<bean id="os3" class="com.guffy.spring.OrderServiceImpl" parent="absService"> 
+
+	<property name="defaultVersion" value="3.0"> </property>
+	
+</bean>
+
+
+</beans>
