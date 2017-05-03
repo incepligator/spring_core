@@ -2,6 +2,22 @@ package com.guffy.spring;
 
 public abstract class AbstractService {
 
+	public AbstractService() {
+
+	}
+
+	public AbstractService(final String manufacturer, final String version) {
+		this.defaultVersion = version;
+		this.manf = manufacturer;
+
+	}
+
+	public AbstractService(final String manufacturer, final String version, final ProductIdGenerator idGenerator) {
+		this.defaultVersion = version;
+		this.manf = manufacturer;
+		this.idGenerator = idGenerator;
+	}
+
 	private String defaultVersion;
 	private String manf;
 	private ProductIdGenerator idGenerator;

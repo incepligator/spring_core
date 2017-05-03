@@ -28,30 +28,48 @@ http://www.springframework.org/schema/aop/spring-aop.xsd">
 <bean id="os1" class="com.guffy.spring.OrderServiceImpl" init-method="initialize" destroy-method="cleanUp" parent="absService"> </bean>
 
 
-<bean id="ordGenerator" class="com.guffy.spring.ProductIdGenerator"> </bean>
-
-
-<bean id="absService" class="com.guffy.spring.AbstractService" abstract= "true" > 
-
-<property name="defaultVersion" value="1.1"> </property>
-	<property name="manf" value="Guffy"> </property>
-	<property name="idGenerator" ref="ordGenerator"> </property>
-	
-	
-</bean>
-
 
 
 <bean id="os2" class="com.guffy.spring.OrderServiceImpl" parent="absService" >
-
-
+<property name="ns" ref="smsService"> </property>
  </bean>
 
 
 <bean id="os3" class="com.guffy.spring.OrderServiceImpl" parent="absService"> 
+	 <property name="defaultVersion" value="3.0"> </property>
+<property name="ns" ref="emailService"> </property>
+</bean>
 
-	<property name="defaultVersion" value="3.0"> </property>
+<bean id="os4" class="com.guffy.spring.OrderServiceImpl" scope="prototype"> 
+	<constructor-arg value="WALMART"></constructor-arg>
+	<constructor-arg value="2.3.4"></constructor-arg>
+	<property name="idGenerator" ref="ordGenerator"> </property>
+</bean>
+
+
+
+<bean id="os5" class="com.guffy.spring.OrderServiceImpl" > 
+	<constructor-arg value="WALMART"></constructor-arg>
+	<constructor-arg value="5.67"></constructor-arg>
+	<constructor-arg type="int" value="5"></constructor-arg>
+	<property name="idGenerator" ref="ordGenerator"> </property>
+</bean>
+
+
+<bean id="os6" class="com.guffy.spring.OrderServiceImpl" > 
+	<constructor-arg value="DELL"></constructor-arg>
+	<constructor-arg value="8.88"></constructor-arg>
 	
+	<constructor-arg ref="ordGenerator"></constructor-arg>
+</bean>
+
+
+
+<bean id="os7" class="com.guffy.spring.OrderServiceImpl" > 
+	<constructor-arg value="WALMART"></constructor-arg>
+	<constructor-arg value="7.67"></constructor-arg>
+	<constructor-arg value="test"></constructor-arg>
+	<property name="idGenerator" ref="ordGenerator"> </property>
 </bean>
 
 
