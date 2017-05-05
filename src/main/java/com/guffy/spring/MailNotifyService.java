@@ -2,7 +2,8 @@ package com.guffy.spring;
 
 import org.springframework.stereotype.Service;
 
-public class EmailNotifyService implements NotifyService {
+@Service("mailService")
+public class MailNotifyService implements NotifyService {
 
 	@Override
 	public void notifyService() {

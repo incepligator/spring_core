@@ -73,4 +73,54 @@ http://www.springframework.org/schema/aop/spring-aop.xsd">
 </bean>
 
 
+<bean class="com.guffy.rest.ProductUtil" > 
+	
+	<property name="vendors">
+	<list value-type="com.guffy.vo.Vendors">
+	
+	<value>WALMART</value>
+	<value>CVS</value>
+	<value>HOMEDEPOT</value>
+	<value>CUBIC</value>
+	<value>TARGET</value>
+	<value>TARGET</value>
+	</list>
+	
+	 </property>
+	 
+	 
+	 <property name="products">
+	<set>
+	<value>Laptop</value>
+	<value>Mouse</value>
+	<value>Beer</value>
+	<value>Beer</value>
+	<value>Wine</value>
+	<value>Wine</value>
+	</set>
+	
+	 </property>
+	 
+	 
+	  <property name="vendorProductMap">
+	<map key-type="com.guffy.vo.Vendors">
+	<entry key="WALMART" value="Wine"></entry>
+<entry key="TARGET" value="Beer"></entry>
+<entry key="CVS" value="Medicine"></entry>
+
+
+	</map>
+	
+	 </property>
+	 
+	 <property name="notifyServices" ref="nsList"/>
+</bean>
+
+<util:list id="nsList" list-class="java.util.LinkedList" value-type="com.guffy.spring.NotifyService">
+			<ref bean="smsService"></ref>
+			<ref bean="emailService"></ref>
+
+</util:list>
+
+
 </beans>
